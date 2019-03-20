@@ -3,6 +3,22 @@
 <view class='green'></view>
   求知书店商城
 </view>
+<view class="addBox">
+  <view class="addBoxSu1">
+    <image src='../../../../images/address.png'></image>
+  </view>
+  <view class="addBoxSu2">
+    <view>
+      <text>收货人：王二</text><text class='right'>12345678912</text>
+    </view>
+    <view>
+      <text class="detail">收货地址：山东省 青岛市 城阳区  上马街道 智力岛路1号创业大厦</text>
+    </view> 
+  </view>
+  <view class="addBoxSu3" bindtap='address'>
+    <image src='../../../../images/nav.png'></image>
+  </view>
+</view>
 <view class='box'>
   <image src='{{proThumimage}}' class='bann'></image>
   <view class='right boxinform'>
@@ -14,7 +30,25 @@
     </view>
   </view>
 </view>
-
+<!-- <view class='box'>
+  <image src='{{proThumimage}}' class='bann'></image>
+  <view class='right boxinform'>
+    <text>{{proName}} \n</text>
+    <text class="intro">{{proInstructions}}</text>
+    <view>
+       <view class='left price yellow'>￥{{proPrice}}</view>
+       <view class='right num'>x{{num}}</view>
+    </view>
+  </view>
+</view> -->
+<view class="delbox">
+  <text>运费</text>
+  <text class='right'>免运费</text>
+</view>
+<view class="delbox hei">
+  <text style="vertical-align:top;">备注:</text>
+  <textarea bindblur="bindTextAreaBlur" auto-height placeholder="给卖家留言" />
+</view>
 <view class='bottom'>
   <view class='total yellow'>合计：￥{{totalMoney}}</view>
   <view class='pay' bindtap='pay'>确认支付</view>

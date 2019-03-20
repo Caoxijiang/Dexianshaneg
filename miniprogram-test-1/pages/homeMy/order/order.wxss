@@ -7,10 +7,12 @@
   margin-left:10rpx;
 }
 .boxinform{
-  width: 380rpx;
-  font-size: 15px;
-  color: #444;
-  display: inline-block;
+  width:500rpx;
+  font-size:15px;
+  color:#444;
+  display:inline-block;
+  margin-left:25rpx;
+
 }
 .intro{
   font-size: 12px;
@@ -83,7 +85,7 @@
   /* line-height: 30px; */
   font-size: 36rpx;
   font-weight: bold;
-  color: #666;
+  color: #d1534d;
 }
 .num{
   color: #888;
@@ -155,12 +157,14 @@
 .navto{
   display:inline-block;
   background:#fff;
+  vertical-align:top;
 }
 .delimg{
-  width:40rpx;
-  height:40rpx;
-  margin-top:30rpx;
-
+ width:141rpx;
+ height:132rpx;
+ position:absolute;
+ margin-top:-30rpx;
+ right:0;
 }
 .pridel{
   text-align: right;

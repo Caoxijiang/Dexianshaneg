@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/login/login",
     "pages/subpages/News/News",
     "pages/subpages/mall/buy/buy",
     "pages/subpages/mall/detail/detail",
@@ -38,6 +37,7 @@
     "pages/homeMy/invoice/invoice",
     "pages/homeMy/order/order",
     "pages/homeMy/address/address",
+    "pages/homeMy/changeaddress/changeaddress",
     "pages/homeMy/instruction/instruction"
    
   ],

@@ -1,21 +1,5 @@
  <view class="addBox">
-   <view class="addBoxSu2">
-     <view class="box"> 
-        <view>
-          <text>收货人：王二</text>
-          <view class="spot">默认</view>
-          <text class='right'>12345678912</text>
-        </view>
-        <view>
-          <text class="detail">收货地址：山东省 青岛市 城阳区  上马街道 智力岛路1号创业大厦</text>
-        </view> 
-     </view> 
-     <view class='edit' bindtap='edit'>
-      编辑
-     </view>  
-    </view>
-    
-    <view class="addBoxSu2">
+  <view class="addBoxSu2">
      <view class="box"> 
         <view>
           <text>收货人：王二</text><text class='right'>12345678912</text>
@@ -28,7 +12,6 @@
       编辑
      </view>  
     </view>
-
 
     <view class="addDDRESS" bindtap='add'>
      添加收货地址
