@@ -82,7 +82,7 @@
 				{
 					"id": 8,
 					"name": "测试",
-					"pathName": "pages/login/login",
+					"pathName": "pages/subpages/News/News",
 					"query": "scene=qaii",
 					"scene": 1011
 				},

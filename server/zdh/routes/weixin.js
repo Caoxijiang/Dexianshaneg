@@ -23,8 +23,7 @@ router.get('/wx_login', function (req, res, next) {
         js_code: code
       }
     },(err, response, data) => {
-      if (response.statusCode === 200) {
-        //   
+      if (response.statusCode === 200) {        //   
           var secretValue = {
           openid: data.openid,
           session_key: data.session_key
@@ -32,7 +31,36 @@ router.get('/wx_login', function (req, res, next) {
         var Secret=secret.random();
         client.set(Secret, JSON.stringify(secretValue), 'EX', 7200);
         var openid=data.openid;
-      res.send({wxtoken:Secret})
+        var userid={}
+       // var wxphoneNum=openid;
+        wxuserDao.selectwxphoneNUm(openid,function(result){
+          if(result==null){
+            wxuserDao.insertWxopenid(openid,function(result){
+              if(result!=undefined){
+                userid.user_id=result;
+                res.send({wxtoken:Secret,user_id:userid.user_id})    
+              }else{
+                res.json(err)
+              }
+            })
+          }else{
+            wxuserDao.selectuserIdByopenid(openid,function(result){
+              if(result!=undefined){
+                userid.user_id=result;
+                res.send({wxtoken:Secret,user_id:userid.user_id})    
+              }else{
+                res.json(err)
+              }
+            })
+          }
+    
+        })
+
+
+       // console.log(userid.user_id)
+
+
+      //res.send({wxtoken:Secret,user_id:userid.user_id})
       } else {
         console.log("[error]", err)
         var sessionValue = data.session_key + data.openid; 
@@ -40,6 +68,10 @@ router.get('/wx_login', function (req, res, next) {
       }
     })
   })
+
+
+
+
 
   // 根据传过来的第三方session在内存获取session_key去微信获取加密信息
 router.get('/encryptData', function (req, res, next) {
