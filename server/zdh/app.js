@@ -41,6 +41,7 @@ var wxproductinfo=require('./routes/productinfo')
 var redis = require('redis');
 var adminmainuserinfo=require('./routes/adminmainuserinfo')
 var dexiansheng=require('./routes/dexiansheng');
+var shoppingCar=require('./routes/shoppingCar');
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 var app = express();
@@ -125,6 +126,7 @@ app.use("/adminmainuserinfo",adminmainuserinfo);
 app.use("/adminproductinfo",productinfo);
 app.use("/productinfo",wxproductinfo);
 app.use("/dexiansheng",dexiansheng)
+app.use("/shoppingCar",shoppingCar);
 //app.use('/redis',redis);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
