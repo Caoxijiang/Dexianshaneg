@@ -34,7 +34,7 @@ router.all('/wx_pay', function(req, res, next) {
             // var spbill_create_ip = req.ip.replace(/::ffff:/, ''); // 获取客户端ip
              var spbill_create_ip= get_client_ip(req);
              //var notify_url = 'https://www.iv2018.cn/wxPay/wxPaycallback'; // 支付成功的回调地址  可访问 不带参数
-             var notify_url = 'http://56c6aa6e.ngrok.io//wxPay/wxPaycallback';
+             var notify_url = 'http://a36798f2.ngrok.io/wxPay/wxPaycallback';
              var nonce_str = ManthNum(); // 随机字符串
              var bodyData = '<xml>';
              bodyData += '<appid>' + wxConfig.AppID + '</appid>';  // 小程序ID

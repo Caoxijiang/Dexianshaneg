@@ -10,6 +10,12 @@ Page({
   data: {
     produceInfo: "",
     imgUrlss: [],
+    modalHidden: true,
+    modalHidden2: true,
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    userInfo: "",
+    wxphone: "",
+    currentItem1: true
   },
   // 下拉刷新  
   onPullDownRefresh: function () {
@@ -91,6 +97,7 @@ Page({
    */
   onShow: function () {
     var self = this;
+   // self.scorp()
     wx.getStorage({
       key: 'produceInfo',
       success: function (res) {
@@ -149,46 +156,17 @@ Page({
       url: '../subpages/News/News'
     })
   },
-  onLoad: function () {
+  onLoad: function (options) {
     var self = this;
-    wx.request({
-      url: serverURL + '/index/carouselinfo',
-      data: {
-        token: app.globalData.token,
-      },
-      success: function (res) {
+    var sence = decodeURIComponent(options)
+    if (sence != undefined) {
+      console.log(options.scene);
+      wx.setStorage({
+        key: "sence",
+        data: options.scene
+      })
 
-        if (res.data == "err") {
-          wx.showModal({
-            title: '提示',
-            content: '登陆过期',
-            complete: function () {
-              wx.redirectTo({
-                url: '/pages/login/login',
-                success: function () {
-                  app.login();
-                }
-              })
-            }
-          })
-        } else if (res.data == "SERVERERR") {
-          wx.showModal({
-            title: '提示',
-            content: "服务器错误",
-          })
-        } else {
-          self.setData({
-            imgUrlss: res.data
-          })
-          wx.setStorage({
-            key: "imgUrls",
-            data: res.data[0]
-          })
-
-        }
-      }, fail: function (res) {
-      }
-    })
+    }
   }
 })
   

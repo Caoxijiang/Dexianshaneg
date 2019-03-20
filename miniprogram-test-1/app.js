@@ -20,7 +20,8 @@ App({
   },
   globalData: {
     userInfo: {},
-    token:null
+    token:null,
+    user_id:null
   },
   login:function(){
     var self = this
@@ -36,8 +37,10 @@ App({
             header: { 'content-type': 'application/json' },
             success: function (res) {
               var openid = res.data.wxtoken;
-            //  console.log("openid: " + JSON.stringify(res.data));
+              var user_id = res.data.user_id;
+             // console.log("openid: " + JSON.stringify(res.data));
               self.globalData.token = openid;
+              self.globalData.user_id =user_id;           
             },
             fail: function (res) {
               wx.showModal({
@@ -47,6 +50,16 @@ App({
               })
             }
           })
+          // wx.getUserInfo({
+          //   success: function (res) {
+          //     console.log({ encryptedData: res.encryptedData, iv: res.iv, code: code })
+          //     //3.解密用户信息 获取unionId
+          //     //...
+          //   },
+          //   fail: function () {
+          //     console.log('获取用户信息失败')
+          //   }
+          // })
         } else {
           console.log("获取用户登录态失败：" + res.errMsg);
         }

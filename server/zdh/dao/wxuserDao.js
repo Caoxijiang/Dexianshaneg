@@ -54,10 +54,28 @@ module.exports = {
 	},
 	selectwxphoneNUm:function(req,callback){
 		pool.getConnection(function(err, connection){
-			connection.query($sql.selectuserwxUserid ,[req],function(err, results, fields){
+			connection.query($sql.selectwxPhoneNum ,[req],function(err, results, fields){
 				if(err) throw err;
 				connection.release();
 				callback(results[0])
+			});
+		})
+	},
+	insertWxopenid:function(req,callback){
+		pool.getConnection(function(err, connection){
+			connection.query($sql.insertWxopenid ,[req],function(err, results, fields){
+				if(err) throw err;
+				connection.release();
+				callback(results.insertId)
+			});
+		})
+	},
+	selectuserIdByopenid:function(req,callback){
+		pool.getConnection(function(err, connection){
+			connection.query($sql.selectuserIdByopenid,[req],function(err, results, fields){
+				if(err) throw err;
+				connection.release();
+				callback(results[0].user_id)
 			});
 		})
 	}
