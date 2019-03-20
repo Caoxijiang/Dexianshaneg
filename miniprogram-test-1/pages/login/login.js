@@ -56,6 +56,7 @@ Page({
   // phoneUtil: function (e) {
   //   var self = this;
 
+
   //   if (e.detail.errMsg == 'getPhoneNumber:fail user deny') {
   //     wx.showModal({
   //       title: '提示',

@@ -15,12 +15,12 @@ Page({
   },
   edit: function (e) {
     wx.navigateTo({
-      url: '../changeaddress/changeaddress'
+      url: '../inform/inform'
     })
   },
   add: function (e) {
     wx.navigateTo({
-      url: '../changeaddress/changeaddress'
+      url: '../inform/inform'
     })
   },
   onReady: function (e) {

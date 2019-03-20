@@ -37,6 +37,7 @@
     "pages/homeMy/invoice/invoice",
     "pages/homeMy/order/order",
     "pages/homeMy/address/address",
+    "pages/homeMy/changeaddress/changeaddress",
     "pages/homeMy/instruction/instruction"
    
   ],

@@ -39,15 +39,3 @@ page{
   border-left:1rpx solid #dedede;
   text-align: center;
 }
-.spot{
-  background:#259c71;
-  text-align:center;
-  display:inline-block;
-  width:90rpx;
-  border-radius:10rpx;
-  margin-left:15rpx;
-  font-size:26rpx;
-  height:35rpx;
-  line-height:35rpx;
-  color: #fff;
-}

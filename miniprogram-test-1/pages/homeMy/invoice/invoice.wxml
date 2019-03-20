@@ -4,8 +4,8 @@
     <view class='couponbox'>
       <image src='./../../../images/me/coupon.png' class='coupon'></image>
     </view>
-    <text>您暂未购买票券！ \n</text>
-    <text class="sub">请到参会注册界面进行购买。</text>
+    <text>您暂未购买图书！ \n</text>
+    <text class="sub">请到求知书店首页购买。</text>
   </view>
      <view wx:else="{{prices!==0}}">
     <form bindsubmit='formSubmit'>

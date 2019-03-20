@@ -31,45 +31,7 @@ Page({
     totalMoney: 0,
     sence:""
   },
-  /* 点击减号 */
-  bindMinus: function () {
-    var num = this.data.num;
-    var price = this.data.proPrice;
-    var total = this.data.totalMoney;
-    
-    // 如果大于1时，才可以减  
-    if (num > 1) {
-      num--;
-    }
-    total = (num*10) * (price*10);
-    total=total/100;
-    // 只有大于一件的时候，才能normal状态，否则disable状态  
-    var minusStatus = num <= 1 ? 'disabled' : 'normal';
-    // 将数值与状态写回  
-    this.setData({
-      num: num,
-      minusStatus: minusStatus,
-      totalMoney:total
-    });
-  },
-  /* 点击加号 */
-  bindPlus: function () {
-    var num = this.data.num;
-    var price = this.data.proPrice;
-    var total = this.data.totalMoney;
-    // 不作过多考虑自增1  
-    num++;
-    total = (num * 10) * (price * 10);
-    total = total / 100;
-    // 只有大于一件的时候，才能normal状态，否则disable状态  
-    var minusStatus = num < 1 ? 'disabled' : 'normal';
-    // 将数值与状态写回  
-    this.setData({
-      num: num,
-      minusStatus: minusStatus,
-      totalMoney: total
-    });
-  },
+  
   /* 输入框事件 */
   bindManual: function (e) {
     var num = e.detail.value;
@@ -77,15 +39,17 @@ Page({
     this.setData({
       num: num
     });
-  },  
-  /*金额合计 */
-  bindTotal: function (e) {
-    var total = e.detail.value;
-    // 将数值与状态写回  
-    this.setData({
-      tolnum: total
-    });
-  },  
+  }, 
+  /*收货地址设置*/
+  address: function () {
+    wx.navigateTo({
+      url: '../../../homeMy/address/address',
+    })
+  }, 
+  /*备注信息获取*/
+  bindTextAreaBlur(e) {
+    console.log(e.detail.value)
+  },
   // 支付方法
   pay: function () {
     var self=this;
