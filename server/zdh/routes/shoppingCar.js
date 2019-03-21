@@ -14,8 +14,8 @@ router.all('/insertCarinfo',function(req, res, next){
         res.send(status_err);
         }else{
             var info={}
-            info.uid=req.uid;
-            info.pid=req.pid 
+            info.uid=req.query.uid || req.body.uid;
+            info.pid=req.query.pid || req.body.pid; 
             shoppingCarDao.insertCarinfo(info,function(data){
                 if(data){
                     console.log(data)
@@ -35,10 +35,13 @@ router.all('/selectCarinfoList',function(req, res, next){
         var status_err="err";
         res.send(status_err);
         }else{
-            var uid=req.uid; 
+            var uid=req.query.uid || req.body.uid; 
             shoppingCarDao.selectCarinfoByuserid(uid,function(data){
                 if(data){
                     console.log(data)
+                    res.send(data)
+                }else{
+                    res.send("ERR")
                 }
             })
 
@@ -54,10 +57,13 @@ router.all('/dellCarinfoList',function(req, res, next){
         var status_err="err";
         res.send(status_err);
         }else{
-            var pid=req.pid; 
+            var pid=req.body.pid || req.query.uid ; 
             shoppingCarDao.dellCarinfo(pid,function(data){
-                if(data){
+                if(data=='SUCCESS'){
+                    res.send(data)
                     console.log(data)
+                }else{
+                    res.send("ERR")
                 }
             })
         }

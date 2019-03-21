@@ -38,8 +38,7 @@ App({
             success: function (res) {
               var openid = res.data.wxtoken;
               var user_id = res.data.user_id;
-              // console.log("sdf" + JSON.stringify(res.data));
-             // console.log("openid: " + JSON.stringify(res.data));
+              console.log("openid: " + JSON.stringify(res.data));
               self.globalData.token = openid;
               self.globalData.user_id =user_id;           
             },

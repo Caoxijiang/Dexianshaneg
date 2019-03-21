@@ -9,8 +9,8 @@ var wxuserDao=require('../dao/wxuserDao')
 var util=require('../util/util');
 // var uuid = require('node-uuid');
 /* 微信登陆 */
-var AppID = 'wx5e7537035eaaf2ba';
-var AppSecret = '48424f8224b05cae5359abf8ea6a9a23';
+var AppID = 'wx408f7883eb31b22f';
+var AppSecret = '1721f3e0b3204a63a2c8c10e4ed86d82';
 router.get('/wx_login', function (req, res, next) {
     var code = req.query.code
     request.get({
@@ -18,23 +18,26 @@ router.get('/wx_login', function (req, res, next) {
       json: true,
       qs: {
         grant_type: 'authorization_code',
-        appid: 'wx5e7537035eaaf2ba',
-        secret: '48424f8224b05cae5359abf8ea6a9a23',
+        appid: AppID,
+        secret: AppSecret,
         js_code: code
       }
     },(err, response, data) => {
-      if (response.statusCode === 200) {        //   
+      if (response.statusCode === 200) {
+        //   
           var secretValue = {
           openid: data.openid,
           session_key: data.session_key
         }
         var Secret=secret.random();
         client.set(Secret, JSON.stringify(secretValue), 'EX', 7200);
-        var openid=data.openid;
-        var userid={}
-       // var wxphoneNum=openid;
-        wxuserDao.selectwxphoneNUm(openid,function(result){
-          if(result==null){
+        var openid=secretValue.openid;
+        var userid={};
+        if(openid!=undefined){
+              // var wxphoneNum=openid;
+         wxuserDao.selectwxphoneNUm(openid,function(result){
+          console.log(result)
+          if(result==undefined){
             wxuserDao.insertWxopenid(openid,function(result){
               if(result!=undefined){
                 userid.user_id=result;
@@ -55,12 +58,14 @@ router.get('/wx_login', function (req, res, next) {
           }
     
         })
-
-
-       // console.log(userid.user_id)
-
-
-      //res.send({wxtoken:Secret,user_id:userid.user_id})
+        }
+    
+ 
+ 
+        // console.log(userid.user_id)
+ 
+ 
+       //res.send({wxtoken:Secret,user_id:userid.user_id})
       } else {
         console.log("[error]", err)
         var sessionValue = data.session_key + data.openid; 
@@ -68,10 +73,6 @@ router.get('/wx_login', function (req, res, next) {
       }
     })
   })
-
-
-
-
 
   // 根据传过来的第三方session在内存获取session_key去微信获取加密信息
 router.get('/encryptData', function (req, res, next) {

@@ -1,7 +1,7 @@
 /* 微信参数AppID 和 Secret */
 var wxConfig = {
-    AppID: "wx5e7537035eaaf2ba",  // 小程序ID  
-    Secret: "48424f8224b05cae5359abf8ea6a9a23",  // 小程序Secret
+    AppID: "wx408f7883eb31b22f",  // 小程序ID  
+    Secret: "1721f3e0b3204a63a2c8c10e4ed86d82",  // 小程序Secret
     Mch_id: "1503504461", // 商户号
     Mch_key: "IV2018CaoxijiangYuxiaoxiaoiv2018", // 商户key
     // 生成商户订单号
