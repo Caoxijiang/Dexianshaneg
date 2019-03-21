@@ -57,24 +57,31 @@ Page({
     setTimeout(function () {
       wx.hideToast()
     }, 1000)
-    // var uId = e.currentTarget.dataset.index;
-    // var ProList = this.data.produceInfo;
-    // var name = ProList[uId].product_name;
-    // var price = ProList[uId].product_price;
-    // var Instructions = ProList[uId].product_Instructions;
-    // var details = ProList[uId].product_details;
-    // var image = ProList[uId].product_img_url;
-    // var thumimage = ProList[uId].product_thumimg_url;
+    var uId = e.currentTarget.dataset.index;
+    var ProList = this.data.produceInfo;
+    var product_id = ProList[uId].product_id;
+    wx.request({
+      url: serverURL + '/shoppingCar/insertCarinfo',
+      data: {
+        token: app.globalData.token,
+        uid: app.globalData.user_id,
+        pid: product_id 
+      },
+      success: function (res) {
+        
+      }, fail: function (res) {
+        // wx.showToast({
+        //   title: '加入购物车失败',
+        //   icon: 'succes',
+        //   duration: 10000
+        // })
 
-    // wx.setStorageSync('name', name);
-    // wx.setStorageSync('price', price);
-    // wx.setStorageSync('Instructions', Instructions);
-    // wx.setStorageSync('details', details);
-    // wx.setStorageSync('image', image);
-    // wx.setStorageSync('thumimage', thumimage);
-    // wx.navigateTo({
-    //   url: '../mall/buy/buy',
-    // })
+        // setTimeout(function () {
+        //   wx.hideToast()
+        // }, 1000)
+      }
+    })
+
   },
   
   //点击事件动态传参产看产品详情
@@ -87,7 +94,7 @@ Page({
     var details = ProList[uId].product_details;
     var image = ProList[uId].product_img_url;
     var thumimage = ProList[uId].product_thumimg_url;
-    
+    // console.log("sdf" + JSON.stringify(this.data.produceInfo) + uId);
     wx.setStorageSync('name', name);
     wx.setStorageSync('price', price);
     wx.setStorageSync('Instructions', Instructions);
@@ -113,15 +120,6 @@ Page({
         })
       },
     })
-    // wx.getStorage({
-    //   key: 'imgUrls',
-    //   success: function (res) {
-    //     self.setData({
-    //       imgUrlss: res.data.carousel_url
-    //     })
-    //   },
-    // })
-
     wx.request({
       url: serverURL + '/productinfo/productinfo',
       data: {

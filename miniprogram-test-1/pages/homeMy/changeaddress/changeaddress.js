@@ -26,8 +26,11 @@ Page({
   onReady: function (e) {
    
   },
-
+  switch1Change(e) {
+    console.log('switch1 发生 change 事件，携带值为', e.detail.value)
+  },
   onShow: function () {
+   
     var self=this;
     if (self.data.wxphone == null || self.data.wxphone == "" || self.data.wxphone==undefined){
       wx.getStorage({

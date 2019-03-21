@@ -6,7 +6,7 @@
       <image src="{{item.carousel_url}}" class="slide-image" width="355" height="150"/>
     </swiper-item>
   </block>
-</swiper>
+</swiper> 
 
 <view class='produce'>
   <view class='item' wx:for="{{produceInfo}}" wx:key="index">

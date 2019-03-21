@@ -7,23 +7,50 @@ Page({
     carts: [],               // 购物车列表
     hasList: false,          // 列表是否有数据
     totalPrice: 0,           // 总价，初始为0
-    selectAllStatus: true    // 全选状态，默认全选
+    selectAllStatus: false    // 全选状态，默认全选
   },
-  onShow() {
-    this.setData({
-      hasList: true,        // 既然有数据了，那设为true吧
-      carts: [
-        { id: 1, title: '新鲜芹菜 半斤', image: 'https://www.iv2018.cn/public/images/productimag/1529395205095.jpg', num: 1, price: 0.01, selected: true },
-        { id: 2, title: '素米 500g', image: 'https://www.iv2018.cn/public/images/productimag/1529395205095.jpg', num: 1, price: 0.03, selected: true }
-      ],
-    });
+  onShow: function () {
+    var self = this;
+    // self.scorp()
+    // wx.getStorage({
+    //   key: 'produceInfo',
+    //   success: function (res) {
+    //     self.setData({
+    //       carts: res.data
+    //     })
+    //   },
+    // })
+    wx.request({
+      url: serverURL + '/shoppingCar/selectCarinfoList',
+      data: {
+        token: app.globalData.token,
+        uid: app.globalData.user_id,
+      },
+      success: function (res) {
+        hasList: true, 
+        self.setData({
+          carts: res.data
+        })
+        console.log(res.data);
+      }, fail: function (res) {
+      }
+    })
   },
+  // onShow() {
+  //   this.setData({
+  //     hasList: true,        // 既然有数据了，那设为true吧
+  //     carts: [
+  //       { id: 1, title: '新鲜芹菜 半斤', image: 'https://www.iv2018.cn/public/images/productimag/1529395205095.jpg', num: 1, price: 0.01, selected: true },
+  //       { id: 2, title: '素米 500g', image: 'https://www.iv2018.cn/public/images/productimag/1529395205095.jpg', num: 1, price: 0.03, selected: true }
+  //     ],
+  //   });
+  // },
   getTotalPrice() {
     let carts = this.data.carts;                  // 获取购物车列表
     let total = 0;
     for (let i = 0; i < carts.length; i++) {         // 循环列表得到每个数据
       if (carts[i].selected) {                   // 判断选中才会计算价格
-        total += carts[i].num * carts[i].price;     // 所有价格加起来
+        total += carts[i].num * carts[i].product_price;     // 所有价格加起来
       }
     }
     this.setData({                                // 最后赋值到data中渲染到页面
@@ -103,4 +130,5 @@ Page({
       url: '../buy/buy',
     })
   },
+ 
 })

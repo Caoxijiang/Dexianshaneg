@@ -62,20 +62,3 @@
     </view> <!--背景-->  
   
 </view>
-
-<!-- <view class='tarbar'>
-  <view class='tarbarlist'>
-    <view>
-        <image class='tabbarimg' src='./../../../images/tabbar/home.png' mode='widthFix' bindtap='home'></image>
-    </view>
-    <view class='tabbartext'>首页</view>
-  </view>
-  <view class='tarbarlist' bindtap='news'>
-    <view><image class='tabbarimg' src='./../../../images/tabbar/news.png' mode='widthFix'></image></view>
-    <view class='tabbartext'>新闻</view>
-  </view>
-  <view class='tarbarlist' bindtap='admin'>
-    <view><image class='tabbarimg' src='./../../../images/tabbar/admina.png' mode='widthFix'></image></view>
-    <view class='tabbartext greencol'>我的</view>
-  </view>
-</view> -->
