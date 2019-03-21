@@ -15,6 +15,13 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     userInfo: "",
     wxphone: "",
+    currentItem1: true,
+    indicatorDots: false,
+    autoplay: false,
+    interval: 5000,
+    duration: 1000,
+    proList: null,
+    metingInfo: "",
     currentItem1: true
   },
   // 下拉刷新  
@@ -167,6 +174,45 @@ Page({
       })
 
     }
+
+    wx.request({
+      url: serverURL + '/index/carouselinfo',
+      data: {
+        token: app.globalData.token,
+      },
+      success: function (res) {
+
+        if (res.data == "err") {
+          wx.showModal({
+            title: '提示',
+            content: '登陆过期',
+            complete: function () {
+              wx.redirectTo({
+                url: '/pages/login/login',
+                success: function () {
+                  app.login();
+                }
+              })
+            }
+          })
+        } else if (res.data == "SERVERERR") {
+          wx.showModal({
+            title: '提示',
+            content: "服务器错误",
+          })
+        } else {
+          self.setData({
+            imgUrlss: res.data
+          })
+          wx.setStorage({
+            key: "imgUrls",
+            data: res.data[0]
+          })
+
+        }
+      }, fail: function (res) {
+      }
+    })
   }
 })
   

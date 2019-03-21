@@ -29,8 +29,8 @@ module.exports = {
     dellCarinfo:function(req,callback){
 		pool.getConnection(function(err, connection){
 			connection.query($sql.dellCarinfo ,[req],function(err, results, fields){
-                if(err) throw err;
-                var msg="SUCCESS";
+          if(err) throw err;
+          var msg="SUCCESS";
 				connection.release();
 				callback(msg)
 			});
