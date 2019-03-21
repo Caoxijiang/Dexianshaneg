@@ -12,17 +12,17 @@
             <image wx:else src='./../../../../images/selea.png' class='radios' bindtap="selectList" data-index="{{index}}"></image>
           </view>
           <navigator url="../details/details?id={{item.id}}" class='navto'>
-            <image class='bann' src="{{item.image}}"></image>
+            <image class='bann' src="{{item.product_img_url}}"></image>
           </navigator>
           <!-- 删除按钮 -->
           <view class='right pridel'>
-            <view class=" price">￥{{item.price}}</view>
+            <view class=" price">￥{{item.product_price}}</view>
              <image src='./../../../../images/del.png' bindtap="deleteList" data-index="{{index}}" class="delimg" ></image>
           </view>
           
           <view class='right boxinform'>
-            <text>{{item.title}} \n</text>
-            <text class="intro">{{item.title}}{{item.title}}</text> 
+            <text>{{item.product_Instructions}} \n</text>
+            <text class="intro">{{item.title}}{{item.product_details}}</text> 
             <!-- <view class='right num'>x{{num}}</view> -->
           </view>          
         </view>

@@ -1,0 +1,41 @@
+/* pages/Introduction/Introduction.wxss */
+page{
+  background: #f7f7f7;
+}
+.addBox{
+  margin-top: 15rpx;
+  border-top:1rpx solid #dedede;
+}
+.addBoxSu2{
+  background: #fff;
+  border-bottom:1rpx solid #dedede;
+  padding:10rpx 30rpx;
+  font-size: 28rpx;
+  color: #666;
+  padding-right:0rpx; 
+}
+.detail{
+  font-size:20rpx;
+}
+.addDDRESS{
+  background: #fff;
+  border-bottom:1rpx solid #dedede;
+  padding:20rpx 30rpx;
+  font-size: 30rpx;
+  color: #666;
+}
+.box{
+  display: inline-block;
+  width:590rpx;
+  vertical-align:middle;
+  padding-right:20rpx;
+}
+.edit{
+  display: inline-block;
+  width:98rpx;
+  height:76rpx;
+  line-height:76rpx;
+  vertical-align:middle;
+  border-left:1rpx solid #dedede;
+  text-align: center;
+}
