@@ -38,6 +38,7 @@
     "pages/homeMy/order/order",
     "pages/homeMy/address/address",
     "pages/homeMy/changeaddress/changeaddress",
+    "pages/homeMy/editaddress/editaddress",
     "pages/homeMy/instruction/instruction"
    
   ],

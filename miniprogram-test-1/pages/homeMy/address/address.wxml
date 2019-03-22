@@ -1,38 +1,25 @@
  <view class="addBox">
+ <view wx:for="{{address}}" wx:key="index">
    <view class="addBoxSu2">
      <view class="box"> 
         <view>
-          <text>收货人：王二</text>
-          <view class="spot">默认</view>
-          <text class='right'>12345678912</text>
+          <text data-index="{{index}}">收货人：{{item.user_name}}</text>
+          <view class="spot" wx:if="{{item.sign==1}}" data-index="{{index}}">默认</view>
+          <text class='right' data-index="{{index}}">{{item.user_phone}}</text>
         </view>
         <view>
-          <text class="detail">收货地址：山东省 青岛市 城阳区  上马街道 智力岛路1号创业大厦</text>
+          <text class="detail" data-index="{{index}}">{{item.user_address}}</text>
         </view> 
      </view> 
-     <view class='edit' bindtap='edit'>
+     <view class='edit' bindtap='edit' data-index="{{index}}">
       编辑
      </view>  
     </view>
-    
-    <view class="addBoxSu2">
-     <view class="box"> 
-        <view>
-          <text>收货人：王二</text><text class='right'>12345678912</text>
-        </view>
-        <view>
-          <text class="detail">收货地址：山东省 青岛市 城阳区  上马街道 智力岛路1号创业大厦</text>
-        </view> 
-     </view> 
-     <view class='edit' bindtap='edit'>
-      编辑
-     </view>  
-    </view>
+  </view>  
 
-
-    <view class="addDDRESS" bindtap='add'>
-     添加收货地址
-    </view>
+  <view class="addDDRESS" bindtap='add'>
+    添加收货地址
+  </view>
     
   </view>  
 

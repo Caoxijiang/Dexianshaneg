@@ -53,12 +53,20 @@ Page({
         sign: sign,
       },
       success: function (res) {
-        console.log(JSON.stringify(res.data));
-        console.log(res.data);
+        wx.showToast({
+          title: '添加地址成功',
+          icon: 'succes',
+          duration: 10000
+        })
+
+        setTimeout(function () {
+          wx.hideToast()
+        }, 1000)
       }, fail: function (res) { }
     })
   },
   onShow: function () {  
   },
+  
 
 })
