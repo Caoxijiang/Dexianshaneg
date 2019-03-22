@@ -9,10 +9,10 @@
   </view>
   <view class="addBoxSu2">
     <view>
-      <text>收货人：王二</text><text class='right'>12345678912</text>
+      <text>收货人：{{address.user_name}}</text><text class='right'>{{address.user_phone}}</text>
     </view>
     <view>
-      <text class="detail">收货地址：山东省 青岛市 城阳区  上马街道 智力岛路1号创业大厦</text>
+      <text class="detail">{{address.user_address}}</text>
     </view> 
   </view>
   <view class="addBoxSu3" bindtap='address'>

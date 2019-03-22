@@ -9,6 +9,7 @@ Page({
    */
   data: {
     selecarts: [], //选择商品
+    address: [], 
     indicatorDots: false,
     autoplay: false,
     interval: 5000,
@@ -135,6 +136,19 @@ Page({
     self.setData({
       totalMoney: totalPrice,
       selecarts: data,
+    })
+    wx.request({
+      url: serverURL + '/goodsaddress//selectsign',
+      data: {
+        token: app.globalData.token,
+        uid: app.globalData.user_id,
+      },
+      success: function (res) {
+        self.setData({
+          address: res.data[0]
+        })
+        console.log(res.data[0]);
+      }, fail: function (res) { }
     })
   },
 
