@@ -11,15 +11,6 @@ Page({
   },
   onShow: function () {
     var self = this;
-    // self.scorp()
-    // wx.getStorage({
-    //   key: 'produceInfo',
-    //   success: function (res) {
-    //     self.setData({
-    //       carts: res.data
-    //     })
-    //   },
-    // })
     wx.request({
       url: serverURL + '/shoppingCar/selectCarinfoList',
       data: {
@@ -36,15 +27,6 @@ Page({
       }
     })
   },
-  // onShow() {
-  //   this.setData({
-  //     hasList: true,        // 既然有数据了，那设为true吧
-  //     carts: [
-  //       { id: 1, title: '新鲜芹菜 半斤', image: 'https://www.iv2018.cn/public/images/productimag/1529395205095.jpg', num: 1, price: 0.01, selected: true },
-  //       { id: 2, title: '素米 500g', image: 'https://www.iv2018.cn/public/images/productimag/1529395205095.jpg', num: 1, price: 0.03, selected: true }
-  //     ],
-  //   });
-  // },
   getTotalPrice() {
     let carts = this.data.carts;                  // 获取购物车列表
     let total = 0;
@@ -126,9 +108,40 @@ Page({
   },
   //结算
   pay: function () {
+    wx.setStorageSync('totalPrice', this.data.totalPrice);
+    let carts = this.data.carts; // 获取购物车列表
+    var selecars = [];
+    let j=0;                 
+    for (let i = 0; i < carts.length; i++) {         // 循环列表得到每个数据
+      if (carts[i].selected) {                   // 判断选中才会计算价格
+        selecars.push({ num: carts[i].num, product_thumimg_url: carts[i].product_thumimg_url, product_Instructions: carts[i].product_Instructions, product_details: carts[i].product_details, product_price: carts[i].product_price,});
+        j++;
+      }
+    }
+    //console.log(selecars);
+    var data = JSON.stringify(selecars);
     wx.navigateTo({
-      url: '../buy/buy',
+      url: '../buy/buy?data=' + data,
     })
   },
+  //点击事件动态传参产看产品详情
+  // detail: function (e) {
+  //   var uId = e.currentTarget.id;
+  //   var ProList = this.data.carts;
+  //   var name = ProList[uId].product_Instructions;
+  //   var price = ProList[uId].product_price;
+  //   var Instructions = ProList[uId].product_details;
+  //   var details = ProList[uId].product_details;
+  //   var image = ProList[uId].product_img_url;
+  //    console.log("sdf" + JSON.stringify(this.data.produceInfo) + uId);
+  //   wx.setStorageSync('name', name);
+  //   wx.setStorageSync('price', price);
+  //   wx.setStorageSync('Instructions', Instructions);
+  //   wx.setStorageSync('details', details);
+  //   wx.setStorageSync('image', image);
+  //   wx.navigateTo({
+  //     url: '../mall/detail/detail'
+  //   })
+  // },
  
 })
