@@ -58,7 +58,8 @@ Page({
     var openid = app.globalData.token;
     var total = self.data.totalMoney;
     var sence = self.data.sence;
-    var mark="book";
+    var uid = app.globalData.user_id;
+    var pid=[];
     wx.request({
       url: serverURL + '/wxPay/wx_pay',
       data: {
@@ -66,8 +67,9 @@ Page({
         title: self.data.proName,
         price: total,
         phoneNum:phone,
-        mark: mark,
-        sence: sence
+        sence: sence,
+        uid: uid,
+        pid:[1,2,3]
       },
       header: { 'content-type': 'application/json' },
       success: function (res) {
