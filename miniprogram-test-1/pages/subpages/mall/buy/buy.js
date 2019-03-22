@@ -8,11 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgUrls: [
-      'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-      'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
-      'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
-    ],
+    selecarts: [], //选择商品
     indicatorDots: false,
     autoplay: false,
     interval: 5000,
@@ -131,20 +127,12 @@ Page({
   },
   onLoad: function (options) {
     var self = this;
-    var name = wx.getStorageSync('name');
-    var price = wx.getStorageSync('price');
-    var Instructions = wx.getStorageSync('Instructions');
-    var details = wx.getStorageSync('details');
-    var image = wx.getStorageSync('image');
-    var thumimage = wx.getStorageSync('thumimage');
+    var data = JSON.parse(options.data)
+    //console.log(data);
+    var totalPrice = wx.getStorageSync('totalPrice'); 
     self.setData({
-      proName: name,
-      proPrice: price,
-      proInstructions: Instructions,
-      proDetails: details,
-      proImage: image,
-      proThumimage: thumimage,
-      totalMoney: price
+      totalMoney: totalPrice,
+      selecarts: data,
     })
   },
 

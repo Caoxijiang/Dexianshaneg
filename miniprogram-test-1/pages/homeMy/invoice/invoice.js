@@ -42,21 +42,6 @@ Page({
       kind:kind
     })
   },
-  home: function (e) {
-    wx.switchTab({
-      url: '../../index/index',
-    })
-  },
-  news: function (e) {
-    wx.switchTab({
-      url: '../../news/news',
-    })
-  },
-  admin: function (e) {
-    wx.switchTab({
-      url: '../../home/home',
-    })
-  },
   showadd: function () {
     wx.navigateTo({
       url: '../instruction/instruction',

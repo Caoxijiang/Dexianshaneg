@@ -19,17 +19,19 @@
     <image src='../../../../images/nav.png'></image>
   </view>
 </view>
-<view class='box'>
-  <image src='{{proThumimage}}' class='bann'></image>
-  <view class='right boxinform'>
-    <text>{{proName}} \n</text>
-    <text class="intro">{{proInstructions}}</text>
-    <view>
-       <view class='left price yellow'>￥{{proPrice}}</view>
-       <view class='right num'>x{{num}}</view>
+ <view wx:for="{{selecarts}}">
+  <view class='box'>
+    <image src='{{item.product_thumimg_url}}' class='bann'></image>
+    <view class='right boxinform'>
+      <text>{{item.product_Instructions}} \n</text>
+      <text class="intro">{{item.product_details}}</text>
+      <view>
+        <view class='left price yellow'>￥{{item.product_price}}</view>
+        <view class='right num'>x{{item.num}}</view>
+      </view>
     </view>
   </view>
-</view>
+ </view> 
 <!-- <view class='box'>
   <image src='{{proThumimage}}' class='bann'></image>
   <view class='right boxinform'>
