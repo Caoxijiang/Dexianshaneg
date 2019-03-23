@@ -27,7 +27,7 @@ router.all('/insertaddressInfo', function(req, res, next) {
     });
   })
 
-  //收货地址列表
+  //收货地址列表==
   //参数说明：uid:用户user_id
   router.all('/selectaddressList', function(req, res, next) {
     var token=req.query.token || req.body.token;

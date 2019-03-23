@@ -1,6 +1,7 @@
 <view class="cart-box">
     <!-- wx:for 渲染购物车列表 -->
     <view wx:for="{{carts}}">
+        <view class='order'><text>订单编号：{{item.ordernum}}</text><text class='right'>{{item.data}}</text> </view>
         <!-- 显示商品 -->
         <view class='box'>
           <navigator url="../details/details?id={{item.id}}" class='navto'>
@@ -17,5 +18,6 @@
              </view>
           </view>        
         </view>
+        <view class="totalbox"><text>共{{item.total}}件商品 合计：￥{{item.totalmoney}}</text></view>
     </view>
 </view>
