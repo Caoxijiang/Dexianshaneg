@@ -19,16 +19,20 @@ var pool  = mysql.createPool($util.extend({},$conf.mysql));
                       //  connection.release();
                         callback(null,req)     
                     })
-                },function(data,callback){
-                    connection.query($sql.insertorderprod,[req.uid,req.pid,req.num,req.oid],function(err,results,fields){
-                        if(err) throw err;
-                        
-                    })
+                },function(req,callback){
+                    var info=JSON.parse(req.pidinfo);
+                    for ( var obj of info){
+                        connection.query($sql.insertorderprod,[req.uid,obj.pid,obj.num,req.oid],function(err,results,fields){
+                            if(err) throw err;
+                        })
+                    }
+                    var msg="SUCCESS";
+                    callback(msg)
                 }
 
             ],function(err,res){
                 connection.release();
-                callback(msg)     
+                callback(res)     
             })
 
         })

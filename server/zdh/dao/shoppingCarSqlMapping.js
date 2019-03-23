@@ -7,3 +7,5 @@ var car={
     selectnumbyuidAdnpid:"select num from shoppingCar where user_id =? and prod_id=?",
 }
 module.exports=car;
+
+

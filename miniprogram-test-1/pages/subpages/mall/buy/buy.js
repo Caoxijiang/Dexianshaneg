@@ -55,7 +55,13 @@ Page({
     var total = self.data.totalMoney;
     var sence = self.data.sence;
     var uid = app.globalData.user_id;
-    var pid=[];
+    // var pid=1;
+    // var num=2;
+
+    //var ss = 
+
+    var pidinfo = [{ pid: 1, num: 2 }, { pid: 2, num: 3 }]
+    //var as = { pid: 2, num: 3 };
     wx.request({
       url: serverURL + '/wxPay/wx_pay',
       data: {
@@ -65,7 +71,7 @@ Page({
         phoneNum:phone,
         sence: sence,
         uid: uid,
-        pid:[1,2,3]
+        pidinfo: JSON.stringify(pidinfo)
       },
       header: { 'content-type': 'application/json' },
       success: function (res) {
@@ -83,6 +89,8 @@ Page({
             }
           })
         } else if (res.data.status == "102") {
+          console.log(res);
+
           wx.showModal({
             title: '提示',
             content: "服务器错误",
