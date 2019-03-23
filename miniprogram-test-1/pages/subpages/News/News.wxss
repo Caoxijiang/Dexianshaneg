@@ -338,8 +338,8 @@ border-radius:4px;
   color: #444;
 }
 .intro{
-  font-size: 12px;
-  color: #888;
+  font-size: 13px;
+  color: #666;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
