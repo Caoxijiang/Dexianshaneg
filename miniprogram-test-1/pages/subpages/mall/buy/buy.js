@@ -17,7 +17,7 @@ Page({
     proList: null,
     wxphone:"",
     smsphone:"",
-    proName: '',
+    proName: '求知书店',
     proPrice: '',
     proInstructions: '',
     proDetails: '',
@@ -51,7 +51,6 @@ Page({
   pay: function () {
     var self=this;
     var phone = self.data.wxphone;
-
     var openid = app.globalData.token;
     var total = self.data.totalMoney;
     var sence = self.data.sence;
