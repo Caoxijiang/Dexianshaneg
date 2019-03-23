@@ -12,8 +12,10 @@
   <view class='item' wx:for="{{produceInfo}}" wx:key="index">
       <view class='producebox'>
         <image src='{{produceInfo[index].product_thumimg_url}}' class='goods' id='{{index}}' bindtap='detail'></image>
-        <text>{{produceInfo[index].product_name}} \n</text>
-        <text class="intro">{{produceInfo[index].product_Instructions}}</text>
+        <view>
+          <text class="intro">{{produceInfo[index].product_name}}</text>
+          <!-- <text class="intro">{{produceInfo[index].product_Instructions}}</text> -->
+        </view>
         <view class='gobuy'>
           <view class='left price'>￥{{produceInfo[index].product_price}}</view>
            <view class='right imgbox'>

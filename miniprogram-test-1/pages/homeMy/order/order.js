@@ -13,8 +13,8 @@ Page({
     this.setData({
       hasList: true,        // 既然有数据了，那设为true吧
       carts: [
-        { id: 1, title: '新鲜芹菜 半斤', image: 'https://www.iv2018.cn/public/images/productimag/1529395205095.jpg', num: 4, price: 0.01, selected: true },
-        { id: 2, title: '素米 500g', image: 'https://www.iv2018.cn/public/images/productimag/1529395205095.jpg', num: 1, price: 0.03, selected: true }
+        { id: 1, ordernum: '2018562345912166', title: '新鲜芹菜 半斤', image: 'https://www.iv2018.cn/public/images/productimag/1529395205095.jpg', num: 4, price: 0.01, data: '2019-03-23',totalmoney: 21, total: 3},
+        { id: 2, ordernum: '2018562345912166', title: '素米 500g', image: 'https://www.iv2018.cn/public/images/productimag/1529395205095.jpg', num: 1, price: 0.03, data: '2019-03-23', totalmoney:21,total:3 }
       ],
     });
   },
