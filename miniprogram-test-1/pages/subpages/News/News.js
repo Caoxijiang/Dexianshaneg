@@ -80,7 +80,7 @@ Page({
         //   wx.hideToast()
         // }, 1000)
       }
-    })
+    }) 
 
   },
   
@@ -90,12 +90,14 @@ Page({
     var ProList = this.data.produceInfo;
     var name = ProList[uId].product_name;
     var price = ProList[uId].product_price;
+    var product_id = ProList[uId].product_id;
     var Instructions = ProList[uId].product_Instructions;
     var details = ProList[uId].product_details;
     var image = ProList[uId].product_img_url;
     var thumimage = ProList[uId].product_thumimg_url;
     // console.log("sdf" + JSON.stringify(this.data.produceInfo) + uId);
     wx.setStorageSync('name', name);
+    wx.setStorageSync('product_id', product_id);
     wx.setStorageSync('price', price);
     wx.setStorageSync('Instructions', Instructions);
     wx.setStorageSync('details', details);
