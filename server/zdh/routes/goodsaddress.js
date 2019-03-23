@@ -94,6 +94,24 @@ router.all('/insertaddressInfo', function(req, res, next) {
     });
   })
 
+  router.all('/selectsign', function(req, res, next) {
+    var token=req.query.token || req.body.token;
+    client.get(token,function(err,value){
+      if( err){
+        var status_err="err";
+        res.send(status_err);
+        }else{
+            var info=req.query || req.body; 
+            goodsaddressDao.selectsign(info.uid,function(data){
+                if(data){
+                    res.send(data);
+                }else{
+                    res.send("ERR");
+                }
+            })
+        }
+    });
+  })
 
 
 module.exports = router;

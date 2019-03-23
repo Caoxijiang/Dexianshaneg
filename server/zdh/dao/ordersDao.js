@@ -11,12 +11,26 @@ var pool  = mysql.createPool($util.extend({},$conf.mysql));
    module.exports = {
     insertInfo:function(req,callback){
         pool.getConnection(function(err,connection){
-            connection.query($sql.insertorderInfo,[req.Num,req.total,req.tname,req.phoneNum,time.formatTime(req.startTime,"Y-M-D h:m:s"),req.mark],function(err,results,fields){
-                if(err) throw err;
-                var msg="SUCCESS";
+            async.waterfall([
+                function(callback){
+                    connection.query($sql.insertorderInfo,[req.uid,req.Num,req.total,req.tname,req.phoneNum,time.formatTime(req.startTime,"Y-M-D h:m:s"),req.mark],function(err,results,fields){
+                        if(err) throw err;
+                        req.oid=results.insertId;
+                      //  connection.release();
+                        callback(null,req)     
+                    })
+                },function(data,callback){
+                    connection.query($sql.insertorderprod,[req.uid,req.pid,req.num,req.oid],function(err,results,fields){
+                        if(err) throw err;
+                        
+                    })
+                }
+
+            ],function(err,res){
                 connection.release();
                 callback(msg)     
             })
+
         })
     },
     selectAlloeder:function(callback){

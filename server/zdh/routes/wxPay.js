@@ -19,6 +19,9 @@ router.all('/wx_pay', function(req, res, next) {
     var phoneNum=req.query.phoneNum || req.param.phoneNum;
     var mark=req.query.mark|| req.param.mark;
     var sence=req.query.sence|| req.param.sence;
+    var uid=req.query.uid || req.param.uid;
+    var pid=req.query.pid || req.param.pid;
+    console.log(pid.toString())
     client.get(token,function(err,value){
         if(err){
             var status_err="err";
@@ -89,6 +92,7 @@ router.all('/wx_pay', function(req, res, next) {
                              orderinfo.phoneNum=phoneNum;
                              orderinfo.startTime=timestamp;
                              orderinfo.mark=sence;
+                             orderinfo.uid=uid;
                              ordersInfo.insertInfo(orderinfo,function(data){
                                 if(data){
                                     var msg="SUCCESS";
