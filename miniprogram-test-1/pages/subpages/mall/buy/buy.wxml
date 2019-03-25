@@ -32,17 +32,7 @@
     </view>
   </view>
  </view> 
-<!-- <view class='box'>
-  <image src='{{proThumimage}}' class='bann'></image>
-  <view class='right boxinform'>
-    <text>{{proName}} \n</text>
-    <text class="intro">{{proInstructions}}</text>
-    <view>
-       <view class='left price yellow'>￥{{proPrice}}</view>
-       <view class='right num'>x{{num}}</view>
-    </view>
-  </view>
-</view> -->
+
 <view class="delbox">
   <text>运费</text>
   <text class='right'>免运费</text>
