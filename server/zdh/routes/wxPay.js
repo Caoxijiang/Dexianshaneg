@@ -1,4 +1,5 @@
 var wxConfig = require('../conf/wxPayconfig'); 
+var Decimal=require('decimal.js');
 var secret = require('../conf/secret').random;
 var client=require('../Redis/RedisServer');
 var express = require('express');
@@ -19,6 +20,8 @@ router.all('/wx_pay', function(req, res, next) {
     var phoneNum=req.query.phoneNum || req.param.phoneNum;
     var mark=req.query.mark|| req.param.mark;
     var sence=req.query.sence|| req.param.sence;
+    var uid=req.query.uid || req.param.uid;
+    var pidinfo=req.query.pidinfo || req.param.pidinfo;
     client.get(token,function(err,value){
         if(err){
             var status_err="err";
@@ -28,7 +31,7 @@ router.all('/wx_pay', function(req, res, next) {
         } 
          var body = param.title; // 商品描述
         //  var out_trade_no = wxConfig.getWxPayOrdrID(); // 商户订单号
-            var total_fee = param.price*100; // 订单价格 单位是 分
+            var total_fee = new Decimal(param.price).mul(new Decimal(100)).toNumber(); // 订单价格 单位是 分
             var timestamp = Math.round(new Date().getTime()/1000); // 当前时间
              var out_trade_no = wxConfig.getWxPayOrdrID();
             // var spbill_create_ip = req.ip.replace(/::ffff:/, ''); // 获取客户端ip
@@ -89,6 +92,8 @@ router.all('/wx_pay', function(req, res, next) {
                              orderinfo.phoneNum=phoneNum;
                              orderinfo.startTime=timestamp;
                              orderinfo.mark=sence;
+                             orderinfo.uid=uid;
+                             orderinfo.pidinfo=pidinfo;
                              ordersInfo.insertInfo(orderinfo,function(data){
                                 if(data){
                                     var msg="SUCCESS";

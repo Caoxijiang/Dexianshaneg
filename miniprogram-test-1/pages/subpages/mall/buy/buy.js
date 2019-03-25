@@ -17,7 +17,7 @@ Page({
     proList: null,
     wxphone:"",
     smsphone:"",
-    proName: '',
+    proName: '求知书店',
     proPrice: '',
     proInstructions: '',
     proDetails: '',
@@ -51,11 +51,17 @@ Page({
   pay: function () {
     var self=this;
     var phone = self.data.wxphone;
-
     var openid = app.globalData.token;
     var total = self.data.totalMoney;
     var sence = self.data.sence;
-    var mark="book";
+    var uid = app.globalData.user_id;
+    // var pid=1;
+    // var num=2;
+
+    //var ss = 
+
+    var pidinfo = [{ pid: 1, num: 2 }, { pid: 2, num: 3 }]
+    //var as = { pid: 2, num: 3 };
     wx.request({
       url: serverURL + '/wxPay/wx_pay',
       data: {
@@ -63,8 +69,9 @@ Page({
         title: self.data.proName,
         price: total,
         phoneNum:phone,
-        mark: mark,
-        sence: sence
+        sence: sence,
+        uid: uid,
+        pidinfo: JSON.stringify(pidinfo)
       },
       header: { 'content-type': 'application/json' },
       success: function (res) {
@@ -82,6 +89,8 @@ Page({
             }
           })
         } else if (res.data.status == "102") {
+          console.log(res);
+
           wx.showModal({
             title: '提示',
             content: "服务器错误",

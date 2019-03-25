@@ -10,8 +10,8 @@ router.all('/wxorders',function(req,res,next){
             var status_err="err";
             res.send(status_err);
         }else{
-            var phone=req.query.phone|| req.body.phone;
-            ordersInfo.wxselecPayokorders(phone,function(data){
+            var uid=req.query.uid|| req.body.uid;
+            ordersInfo.wxselecPayokorders(uid,function(data){
                 if(data.length!=0){
                     res.send(data)
                 }else{
@@ -58,6 +58,7 @@ router.all("/insertorderInfo",function(req,res){
             orderinfo.tname=req.query.tname;
             orderinfo.phoneNum=req.query.phoneNum;
             orderinfo.startTime=req.query.startTime;
+            orderinfo.uid=req.query.uid;
             ordersInfo.insertInfo(orderinfo,function(data){
                 if(data=="SUCCESS"){
                    var  status_err="SUCCESS";
