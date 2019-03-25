@@ -85,7 +85,7 @@ Page({
             content: '登陆过期',
             complete: function () {
               wx.redirectTo({
-                url: '/pages/login/login',
+                url: 'pages/subpages/News/News',
                 success: function () {
                   app.login();
                 }
