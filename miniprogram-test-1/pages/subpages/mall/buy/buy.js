@@ -55,13 +55,11 @@ Page({
     var total = self.data.totalMoney;
     var sence = self.data.sence;
     var uid = app.globalData.user_id;
-    // var pid=1;
-    // var num=2;
-
-    //var ss = 
-
-    var pidinfo = [{ pid: 1, num: 2 }, { pid: 2, num: 3 }]
-    //var as = { pid: 2, num: 3 };
+    var pidinfo = new Array(); 
+    for (let i = 0; i < this.data.selecarts.length;i++){
+      pidinfo.push({ pid: this.data.selecarts[i].prod_id, num: this.data.selecarts[i].num});
+    }
+    // var pidinfo = [{ pid: 1, num: 2 }, { pid: 2, num: 3 }]
     wx.request({
       url: serverURL + '/wxPay/wx_pay',
       data: {
@@ -138,12 +136,14 @@ Page({
   onLoad: function (options) {
     var self = this;
     var data = JSON.parse(options.data)
-    //console.log(data);
+   
     var totalPrice = wx.getStorageSync('totalPrice'); 
+    
     self.setData({
       totalMoney: totalPrice,
       selecarts: data,
     })
+    
     wx.request({
       url: serverURL + '/goodsaddress//selectsign',
       data: {

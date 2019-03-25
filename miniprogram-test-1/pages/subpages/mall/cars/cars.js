@@ -128,7 +128,7 @@ Page({
     let j=0;                 
     for (let i = 0; i < carts.length; i++) {         // 循环列表得到每个数据
       if (carts[i].selected) {                   // 判断选中才会计算价格
-        selecars.push({ num: carts[i].num, product_thumimg_url: carts[i].product_thumimg_url, product_Instructions: carts[i].product_Instructions, product_details: carts[i].product_details, product_price: carts[i].product_price,});
+        selecars.push({ prod_id:carts[i].prod_id,num: carts[i].num, product_thumimg_url: carts[i].product_thumimg_url, product_Instructions: carts[i].product_Instructions, product_details: carts[i].product_details, product_price: carts[i].product_price,});
         j++;
       }
     }
