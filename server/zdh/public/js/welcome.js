@@ -192,38 +192,150 @@ $("#liveManage-btn").on('click',function(){
     $(".news-box").remove();
     $(".main-right").append(liveManage);
 })
+
 //添加二维码信息
 $("#addQrcode").on('click',function(){
-    $.ajax({
+    var addLive =  
+    '<div class="news-box">'+
+        '<div class="news-title">'+
+            '<h2 style="width:215px;">添加分销商标志</h2>'+
+        '</div>'+
+        '<div class="news-content">'+
+            '<div class="news-name ipt-title">'+
+            '<form class="layui-form">'+
+            '<div class="layui-form-item">'+
+                '<input type="text" id="subTitle" name="subTitle" lay-verify="required" class="layui-input">'+
+            '</div>'+
+            '<div class="layui-form-item">'+
+                '<button class="layui-btn" lay-submit lay-filter="formDemo">添加</button>'+
+            '</div>'+
+        '</form>'+   
+    '</div></div>'
+    $(".news-box").remove();
+    $(".main-right").append(addLive);
+    // $.ajax({
+    //     type: "POST", 
+    //     url:"/dexiansheng/deSirQrcodeInfo",
+    //     data:{
+    //         sign:"qaii"
+    //     },
+    //     success:function(data){
+    //         if(data){
+    //             console.log( JSON.stringify(data));
+    //             alert(data)
+    //         }
+    //     }
+    // })
+})
+
+layui.use('form', function(){
+    var form = layui.form;
+    
+    //监听提交
+    form.on('submit(formDemo)', function(data){
+      let sign=data.field.subTitle;
+       $.ajax({
         type: "POST", 
         url:"/dexiansheng/deSirQrcodeInfo",
         data:{
-            sign:"qaii"
+            sign:sign
         },
         success:function(data){
             if(data){
-                alert(data)
+                let str='<img src="'+data.imgurl+'">';
+                console.log( JSON.stringify(data.imgurl));
+                $(".main-right").append(str);
             }
         }
     })
-})
+      return false;
+    });
+  });
 
 //查询二维码信息列表
 $("#findQrcode").on('click',function(){
-    $.ajax({
+    var  newsManage =  '<div class="news-box"><div class="news-title">'+
+    '<h2 style="width: 210px;">二维码信息管理</h2>'+
+    '</div>'+
+    '<div class="news-content">'+
+    '<table class="table-box table-sort " id="newsTable">'+
+    '<thead>'+
+    '  <tr >'+
+    '   <th lay-data="{field:"id", width:177, sort: true}" style="text-align: center;">序号</th>'+
+    '   <th style="text-align: center;">标志</th>'+
+    '   <th style="text-align: center;">图片</th>'+
+    '    <th style="text-align: center;">操作</th>'+
+    '  </tr>'+
+    '   </thead>'+
+    '<tbody></tbody>'
+    '   </table>'+
+    '</div></div>'
+$(".news-box").remove();
+$(".main-right").append(newsManage);
+        $.ajax({
         type: "POST", 
         url:"/dexiansheng/findSirQrcodeList",
         data:{
             sign:"qaii"
         },
+        async:true,
         success:function(data){
-            if(data){
-                alert(JSON.stringify(data))
-            }else{
-                alert("Err")
-            }
-        }
-    })
+            alert(JSON.stringify(data))
+            $(data).each(function(index,element){
+                 index+=1;
+                var  newsManageTR =  '<tr class="metting">'+
+                 '<td>'+index+'</td>'+
+                 '<td>'+element.sign+'</td>'+
+                 '<td><img src="'+element.imgUrl+'"/></td>'+
+                 '<td >'+
+                 //'<button class="btn btn-danger">修改</button>'+
+                 '<button id="delNes-btn" data-id="'+element.metting_id+'"   data-img="'+element.metting_imageUrl+'" class="btn btn-primary">删除</button>'+
+                 '</td>'+
+                 '</tr>'         
+            $("#newsTable tbody").append(newsManageTR);
+            })
+            //删除新闻接口
+            $("#newsTable").on("click","#delNes-btn",function(){
+               var getImgUrl = $(this).attr("data-img");
+               var getImgId = $(this).attr("data-id");
+               var _imgThis = $(this);
+            $.ajax({
+                type:"post",
+                url:"/adminmetting/dellmeetingList",
+                data:{
+                    "id" : getImgId,
+                    "Meturl" :getImgUrl
+                },
+                success:function(data){
+                   ;
+                  if(data == 1){
+                    _imgThis.parent().parent().remove();
+                  }else{
+                    layer.msg('您的操作有误+'+data+'', {
+                        icon: 1,
+                        time: 1000
+                      });
+                  }
+                }
+            })
+            })                  
+        }   
+        
+    });
+    // $.ajax({
+    //     type: "POST", 
+    //     url:"/dexiansheng/findSirQrcodeList",
+    //     data:{
+    //         sign:"qaii"
+    //     },
+    //     success:function(data){
+    //         if(data){
+    //             alert(JSON.stringify(data))
+    //         }else{
+    //             alert("Err")
+    //         }
+    //     }
+    // })
 })
 //删除二维码信息
 $("#dellQrcode").on('click',function(){
@@ -236,7 +348,7 @@ $("#dellQrcode").on('click',function(){
         },
         success:function(data){
             if(data){
-                alert(JSON.stringify(data))
+                //alert(JSON.stringify(data))
             }else{
                 alert("Err")
             }
@@ -256,7 +368,7 @@ $("#updateQrcode").on('click',function(){
         },
         success:function(data){
             if(data){
-                alert(JSON.stringify(data))
+               // alert(JSON.stringify(data))
             }else{
                 alert("Err")
             }
