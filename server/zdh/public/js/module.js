@@ -1023,6 +1023,7 @@ $(function(){
 $(".main-right").html(meetingOrderHtml);
 langShow();
   url:"/adminorder/selectorderList",
+
  order_table = $('#orderTable').DataTable({
     "language": lang, //提示信息
     "autoWidth": true, //自适应宽度，
@@ -1033,7 +1034,7 @@ langShow();
     "lengthChange": true, //是否允许产品改变表格每页显示的记录数
     "info": true, //控制是否显示表格左下角的信息
     //跟数组下标一样，第一列从0开始，这里表格初始化时，第四列默认降序
-    "order": [0, 'asc'], //asc升序   desc降序
+    "order": [0, 'desc'], //asc升序   desc降序
     'draw':false,//刷新页面
     "aoColumnDefs": [{
         "orderable": false,
@@ -1045,6 +1046,7 @@ langShow();
     ajax:{
         url:"/adminorder/selectorderList",
         success:function(data){
+            console.log(data)
            if(data.length!=0){
             $('#orderTable').dataTable().fnAddData(data);
            }else{
