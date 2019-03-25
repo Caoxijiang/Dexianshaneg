@@ -77,5 +77,18 @@ var pool  = mysql.createPool($util.extend({},$conf.mysql));
 
             })
         })
+    },
+    dellorderLisiByuid:function(req,callback){
+        pool.getConnection(function(err,connection){
+            connection.query($sql.dellorderLisiByuid,[req],function(err,results,fields){
+                if(err) throw err;
+                var msg="SUCCESS";
+                connection.release();
+                callback(msg)
+
+            })
+        })
     }
+
+
 }
