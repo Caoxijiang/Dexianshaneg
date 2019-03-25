@@ -30,7 +30,6 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         var code = res.code;
         if (code) {
-          console.log('获取用户登录凭证：' + code);
           wx.request({
             url: serverURL + '/weixin/wx_login',
             data: { code: code },
@@ -38,9 +37,9 @@ App({
             success: function (res) {
               var openid = res.data.wxtoken;
               var user_id = res.data.user_id;
-              console.log("openid: " + JSON.stringify(res.data));
+             // console.log("openid: " + JSON.stringify(res.data));
               self.globalData.token = openid;
-              self.globalData.user_id =user_id;           
+              self.globalData.user_id =user_id;                         
             },
             fail: function (res) {
               wx.showModal({
