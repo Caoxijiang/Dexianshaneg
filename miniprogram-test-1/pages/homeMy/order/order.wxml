@@ -1,23 +1,26 @@
 <view class="cart-box">
     <!-- wx:for 渲染购物车列表 -->
     <view wx:for="{{carts}}">
-        <view class='order'><text>订单编号：{{item.ordernum}}</text><text class='right'>{{item.data}}</text> </view>
+        <view class='order'><text>订单编号：{{item.order_Num}}</text><text class='right'>{{item.order_starttime}}</text> </view>
         <!-- 显示商品 -->
         <view class='box'>
-          <navigator url="../details/details?id={{item.id}}" class='navto'>
-            <image class='bann' src="{{item.image}}"></image>
+          <navigator url="../details/details?id={{item.product_id}}" class='navto'>
+            <image class='bann' src="{{item.product_thumimg_url}}"></image>
+
           </navigator>
           <!-- 上标注 -->
-          <image src='./../../../../images/sucess.png' class="delimg" ></image>
+          <image wx:if="{{item.order_status==1}}" src='./../../../../images/sucess.png' class="delimg" ></image>
+          <image wx:elif="{{item.order_status==0}}" src='./../../../../images/payfail.png' class="delimg" ></image>
           <view class='boxinform'>
-            <text>{{item.title}} \n</text>
-            <text class="intro">{{item.title}}{{item.title}}</text>
+            <text>{{item.product_name}} \n</text>
+            <text class="intro">{{item.product_Instructions}}</text>
              <view>
-              <text class=" price">￥{{item.price}}</text>
+              <text class=" price">￥{{item.product_price}}</text>
                <text class="right">X{{item.num}}</text>
              </view>
           </view>        
         </view>
-        <view class="totalbox"><text>共{{item.total}}件商品 合计：￥{{item.totalmoney}}</text></view>
+        <!-- <view class="totalbox"><text>共{{item.total}}件商品 合计：￥{{item.totalmoney}}</text></view> -->
+        <view class="totalbox"><text>共{{item.num}}件商品</text></view>
     </view>
 </view>

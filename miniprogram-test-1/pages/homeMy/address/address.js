@@ -56,7 +56,7 @@ Page({
         self.setData({
           address: res.data
         })
-        console.log(res.data);
+        //console.log(res.data);
       }, fail: function (res) {}
     })
 
