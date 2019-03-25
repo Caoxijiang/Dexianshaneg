@@ -47,5 +47,5 @@
     全选
   </view>
   <view class='total yellow'>合计：￥{{totalPrice}}</view>
-  <view class='pay' bindtap='pay'>结算（0）</view>
+  <view class='pay' bindtap='pay'>结算</view>
 </view>

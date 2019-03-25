@@ -7,6 +7,8 @@ Page({
     carts: [],               // 购物车列表
     hasList: false,          // 列表是否有数据
     totalPrice: 0,           // 总价，初始为0
+    totalnum: 0,
+    total:'',
     selectAllStatus: false    // 全选状态，默认全选
   },
   onShow: function () {
@@ -30,9 +32,11 @@ Page({
   getTotalPrice() {
     let carts = this.data.carts;                  // 获取购物车列表
     let total = 0;
+    let num=0;
     for (let i = 0; i < carts.length; i++) {         // 循环列表得到每个数据
       if (carts[i].selected) {                   // 判断选中才会计算价格
         total += carts[i].num * carts[i].product_price;     // 所有价格加起来
+        num+=car[i].num;
       }
     }
     this.setData({                                // 最后赋值到data中渲染到页面
@@ -138,24 +142,4 @@ Page({
       url: '../buy/buy?data=' + data,
     })
   },
-  //点击事件动态传参产看产品详情
-  // detail: function (e) {
-  //   var uId = e.currentTarget.id;
-  //   var ProList = this.data.carts;
-  //   var name = ProList[uId].product_Instructions;
-  //   var price = ProList[uId].product_price;
-  //   var Instructions = ProList[uId].product_details;
-  //   var details = ProList[uId].product_details;
-  //   var image = ProList[uId].product_img_url;
-  //    console.log("sdf" + JSON.stringify(this.data.produceInfo) + uId);
-  //   wx.setStorageSync('name', name);
-  //   wx.setStorageSync('price', price);
-  //   wx.setStorageSync('Instructions', Instructions);
-  //   wx.setStorageSync('details', details);
-  //   wx.setStorageSync('image', image);
-  //   wx.navigateTo({
-  //     url: '../mall/detail/detail'
-  //   })
-  // },
- 
 })
