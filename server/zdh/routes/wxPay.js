@@ -22,6 +22,7 @@ router.all('/wx_pay', function(req, res, next) {
     var sence=req.query.sence|| req.param.sence;
     var uid=req.query.uid || req.param.uid;
     var pidinfo=req.query.pidinfo || req.param.pidinfo;
+    var remarks=req.query.remarks || req.param.remarks;
     client.get(token,function(err,value){
         if(err){
             var status_err="err";
@@ -94,6 +95,7 @@ router.all('/wx_pay', function(req, res, next) {
                              orderinfo.mark=sence;
                              orderinfo.uid=uid;
                              orderinfo.pidinfo=pidinfo;
+                             orderinfo.remarks=remarks;
                              ordersInfo.insertInfo(orderinfo,function(data){
                                 if(data){
                                     var msg="SUCCESS";
