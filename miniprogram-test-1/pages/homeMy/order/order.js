@@ -11,6 +11,7 @@ Page({
   },
   onShow() {
     var self = this;
+    console.log("sdgsdf");
     wx.request({
       url: serverURL + '/orders/wxorders',
       data: {
@@ -21,7 +22,7 @@ Page({
         self.setData({
           hasList: true,
           carts: res.data
-        })
+        })     
         console.log(res.data);
       }, fail: function (res) { }
     })

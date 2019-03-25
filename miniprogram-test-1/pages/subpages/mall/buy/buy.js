@@ -26,17 +26,10 @@ Page({
     num:'1',
     minusStatus: 'disabled',
     totalMoney: 0,
-    sence:""
+    sence:"",
+    remark: ""
   },
   
-  /* 输入框事件 */
-  bindManual: function (e) {
-    var num = e.detail.value;
-    // 将数值与状态写回  
-    this.setData({
-      num: num
-    });
-  }, 
   /*收货地址设置*/
   address: function () {
     wx.navigateTo({
@@ -45,21 +38,27 @@ Page({
   }, 
   /*备注信息获取*/
   bindTextAreaBlur(e) {
-    console.log(e.detail.value)
+    let remark=e.detail.value;
+    //console.log(meno);
+    this.setData({
+      remark: remark
+    });
+    console.log();
   },
   // 支付方法
   pay: function () {
     var self=this;
     var phone = self.data.wxphone;
+    var remark = self.data.remark;//备注信息
     var openid = app.globalData.token;
     var total = self.data.totalMoney;
     var sence = self.data.sence;
-    var uid = app.globalData.user_id;
+    var uid = app.globalData.user_id;  
     var pidinfo = new Array(); 
     for (let i = 0; i < this.data.selecarts.length;i++){
       pidinfo.push({ pid: this.data.selecarts[i].prod_id, num: this.data.selecarts[i].num});
     }
-    // var pidinfo = [{ pid: 1, num: 2 }, { pid: 2, num: 3 }]
+   
     wx.request({
       url: serverURL + '/wxPay/wx_pay',
       data: {
@@ -69,6 +68,7 @@ Page({
         phoneNum:phone,
         sence: sence,
         uid: uid,
+        remarks: remark,
         pidinfo: JSON.stringify(pidinfo)
       },
       header: { 'content-type': 'application/json' },
@@ -87,7 +87,7 @@ Page({
             }
           })
         } else if (res.data.status == "102") {
-          console.log(res);
+          //console.log(res);
 
           wx.showModal({
             title: '提示',
@@ -151,8 +151,10 @@ Page({
         uid: app.globalData.user_id,
       },
       success: function (res) {
+        console.log(res.data[0])
         self.setData({
-          address: res.data[0]
+          address: res.data[0],
+          wxphone: res.data[0].user_phone
         })
         console.log(res.data[0]);
       }, fail: function (res) { }
@@ -161,14 +163,14 @@ Page({
 
   onShow:function(){
     var self=this;
-    wx.getStorage({
-      key: 'wxphone',
-      success: function (res) {
-        self.setData({
-          wxphone:res.data
-        })
-      }
-    }),
+    // wx.getStorage({
+    //   key: 'wxphone',
+    //   success: function (res) {
+    //     self.setData({
+    //       wxphone:res.data
+    //     })
+    //   }
+    // }),
     wx.getStorage({
       key: 'sence',
       success: function(res) {
