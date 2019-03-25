@@ -120,7 +120,6 @@ router.all('/wx_pay', function(req, res, next) {
      });
 })
 router.post('/wxPaycallback', function(req, res, next) {
-    console.log(111);
     var body = req.body.xml;
     parseString(body,function(err,result){    
         if(body.return_code=="SUCCESS"){
