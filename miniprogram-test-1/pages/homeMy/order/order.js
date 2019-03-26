@@ -9,9 +9,9 @@ Page({
     totalPrice: 0,           // 总价，初始为0
     selectAllStatus: true    // 全选状态，默认全选
   },
+  
   onShow() {
     var self = this;
-    console.log("sdgsdf");
     wx.request({
       url: serverURL + '/orders/wxorders',
       data: {
@@ -19,12 +19,16 @@ Page({
         uid: app.globalData.user_id,
       },
       success: function (res) {
-        console.log(res);
-        self.setData({
-          hasList: true,
-          carts: res.data
-        })     
-        console.log(res.data);
+        if (res.data[0].product_id == null){
+            //console.log("kong");
+        }else{
+          self.setData({
+            hasList: true,
+            carts: res.data
+          }) 
+        }
+            
+        
       }, fail: function (res) { }
     })
 
