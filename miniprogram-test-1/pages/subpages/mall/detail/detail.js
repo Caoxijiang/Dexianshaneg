@@ -55,17 +55,22 @@ Page({
       success: function (res) {
 
       }, fail: function (res) {
-        // wx.showToast({
-        //   title: '加入购物车失败',
-        //   icon: 'succes',
-        //   duration: 10000
-        // })
-
-        // setTimeout(function () {
-        //   wx.hideToast()
-        // }, 1000)
       }
     }) 
+  },
+
+  //结算
+  pay: function () {
+    wx.setStorageSync('totalPrice',this.data.proPrice);
+    let carts = this.data.carts; // 获取购物车列表
+    var selecars = [];
+    selecars.push({ prod_id: this.data.product_id, num: 1, product_thumimg_url: this.data.proImage, product_Instructions: this.data.proName, product_details: this.data.proInstructions, product_price: this.data.proPrice});
+    console.log(selecars);
+  
+      var data = JSON.stringify(selecars);
+      wx.navigateTo({
+        url: '../buy/buy?data=' + data,
+      })
   },
   onShow: function () {
     

@@ -60,6 +60,19 @@ image.img{
   height: 80rpx;
   position: fixed;
   bottom: 10rpx;
+  right:250rpx;
+  background:#259c71;
+  color:#fff;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+  font-size:30rpx;
+}
+.buybtn2{
+  width: 200rpx;
+  height: 80rpx;
+  position: fixed;
+  bottom: 10rpx;
   right:30rpx;
   background:#259c71;
   color:#fff;
