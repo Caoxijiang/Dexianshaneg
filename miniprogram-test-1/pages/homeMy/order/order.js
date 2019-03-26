@@ -19,6 +19,7 @@ Page({
         uid: app.globalData.user_id,
       },
       success: function (res) {
+        console.log(res);
         self.setData({
           hasList: true,
           carts: res.data

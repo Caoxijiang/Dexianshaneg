@@ -83,7 +83,7 @@ router.all('/dellorderLisiByuid',function(req,res,next){
         var status_err="err";
         res.send(status_err);
         }else{ 
-            var uid=req.query.oid|| req.param.uid;
+            var oid=req.query.oid|| req.param.uid;
             ordersInfo.dellorderLisiByuid(oid,function(data){
                 if(data=="SUCCESS"){
                    var  status_err="SUCCESS";
