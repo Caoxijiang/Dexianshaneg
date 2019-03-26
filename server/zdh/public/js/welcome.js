@@ -282,7 +282,7 @@ $(".main-right").append(newsManage);
         },
         async:true,
         success:function(data){
-            alert(JSON.stringify(data))
+           alert(JSON.stringify(data))
             $(data).each(function(index,element){
                  index+=1;
                 var  newsManageTR =  '<tr class="metting">'+
@@ -299,11 +299,12 @@ $(".main-right").append(newsManage);
             //删除新闻接口
             $("#newsTable").on("click","#delNes-btn",function(){
                var getImgId = $(this).attr("data-id");
+               console.log(getImgId);
             $.ajax({
                 type:"post",
                 url:"/dexiansheng/dellSirQrcodeList",
                 data:{
-                    "id" : id,
+                    "id" :getImgId,
                 },
                 success:function(data){
                 }
@@ -360,7 +361,7 @@ $("#updateQrcode").on('click',function(){
             if(data){
                // alert(JSON.stringify(data))
             }else{
-                alert("Err")
+                //alert("Err")
             }
         }
     })
