@@ -35,4 +35,33 @@ Page({
     //   ],
     // });
   },
+  deleteList(e) {
+    let self = this;
+    const index = e.currentTarget.dataset.index;
+    let carts = self.data.carts;
+    wx.request({
+      url: serverURL + '/orders/dellorderLisiByuid',
+      data: {
+        token: app.globalData.token,
+        uid: app.globalData.user_id,
+        oid: carts[index].order_id
+      },
+      success: function (res) {
+        // console.log(res.data);
+        carts.splice(index, 1);              // 删除购物车列表里这个商品
+        self.setData({
+          carts: carts
+        });
+        if (!carts.length) {                  // 如果购物车为空
+          self.setData({
+            hasList: false              // 修改标识为false，显示购物车为空页面
+          });
+        } else {                              // 如果不为空
+          self.getTotalPrice();           // 重新计算总价格
+        }
+      }, fail: function (res) {
+      }
+    })
+
+  },
 })

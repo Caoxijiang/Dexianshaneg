@@ -242,9 +242,11 @@ layui.use('form', function(){
         },
         success:function(data){
             if(data){
-                let str='<img src="'+data.imgurl+'">';
+                let str='<div class="layui-form-item">'+
+                '<img src="'+data.imgurl+'">'+
+                '</div>';
                 console.log( JSON.stringify(data.imgurl));
-                $(".main-right").append(str);
+                $(".layui-form").append(str);
             }
         }
     })
@@ -289,33 +291,21 @@ $(".main-right").append(newsManage);
                  '<td><img src="'+element.imgUrl+'"/></td>'+
                  '<td >'+
                  //'<button class="btn btn-danger">修改</button>'+
-                 '<button id="delNes-btn" data-id="'+element.metting_id+'"   data-img="'+element.metting_imageUrl+'" class="btn btn-primary">删除</button>'+
+                 '<button id="delNes-btn" data-id="'+element.metting_id+'" class="btn btn-primary">删除</button>'+
                  '</td>'+
                  '</tr>'         
             $("#newsTable tbody").append(newsManageTR);
             })
             //删除新闻接口
             $("#newsTable").on("click","#delNes-btn",function(){
-               var getImgUrl = $(this).attr("data-img");
                var getImgId = $(this).attr("data-id");
-               var _imgThis = $(this);
             $.ajax({
                 type:"post",
-                url:"/adminmetting/dellmeetingList",
+                url:"/dexiansheng/dellSirQrcodeList",
                 data:{
-                    "id" : getImgId,
-                    "Meturl" :getImgUrl
+                    "id" : id,
                 },
                 success:function(data){
-                   ;
-                  if(data == 1){
-                    _imgThis.parent().parent().remove();
-                  }else{
-                    layer.msg('您的操作有误+'+data+'', {
-                        icon: 1,
-                        time: 1000
-                      });
-                  }
                 }
             })
             })                  
@@ -338,23 +328,23 @@ $(".main-right").append(newsManage);
     // })
 })
 //删除二维码信息
-$("#dellQrcode").on('click',function(){
-    var id="12";
-    $.ajax({
-        type: "POST", 
-        url:"/dexiansheng/dellSirQrcodeList",
-        data:{
-            id:id
-        },
-        success:function(data){
-            if(data){
-                //alert(JSON.stringify(data))
-            }else{
-                alert("Err")
-            }
-        }
-    })
-})
+// $("#dellQrcode").on('click',function(){
+//     var id="12";
+//     $.ajax({
+//         type: "POST", 
+//         url:"/dexiansheng/dellSirQrcodeList",
+//         data:{
+//             id:id
+//         },
+//         success:function(data){
+//             if(data){
+//                 //alert(JSON.stringify(data))
+//             }else{
+//                 alert("Err")
+//             }
+//         }
+//     })
+// })
 //修改二维码信息
 $("#updateQrcode").on('click',function(){
     var id="12";

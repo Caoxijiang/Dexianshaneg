@@ -18,6 +18,10 @@
               <text class=" price">￥{{item.product_price}}</text>
                <text class="right">X{{item.num}}</text>
              </view>
+             <!-- 删除按钮 -->
+          <view class='right pridel'>
+             <image src='./../../../../images/del.png' bindtap="deleteList" data-index="{{index}}" class="delimg2" ></image>
+          </view>
           </view>        
         </view>
         <!-- <view class="totalbox"><text>共{{item.total}}件商品 合计：￥{{item.totalmoney}}</text></view> -->

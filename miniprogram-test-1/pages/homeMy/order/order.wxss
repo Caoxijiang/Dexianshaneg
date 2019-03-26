@@ -187,3 +187,9 @@
   color:#aaa;
   text-align:right;
 }
+.delimg2{
+  width:40rpx;
+  height:40rpx;
+  margin-top:-30rpx;
+
+}
