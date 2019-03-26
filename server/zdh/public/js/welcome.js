@@ -282,7 +282,7 @@ $(".main-right").append(newsManage);
         },
         async:true,
         success:function(data){
-           alert(JSON.stringify(data))
+           //alert(JSON.stringify(data))
             $(data).each(function(index,element){
                  index+=1;
                 var  newsManageTR =  '<tr class="metting">'+
@@ -291,7 +291,7 @@ $(".main-right").append(newsManage);
                  '<td><img src="'+element.imgUrl+'"/></td>'+
                  '<td >'+
                  //'<button class="btn btn-danger">修改</button>'+
-                 '<button id="delNes-btn" data-id="'+element.metting_id+'" class="btn btn-primary">删除</button>'+
+                 '<button id="delNes-btn" data-id="'+element.id+'" class="btn btn-primary">删除</button>'+
                  '</td>'+
                  '</tr>'         
             $("#newsTable tbody").append(newsManageTR);
@@ -299,7 +299,7 @@ $(".main-right").append(newsManage);
             //删除新闻接口
             $("#newsTable").on("click","#delNes-btn",function(){
                var getImgId = $(this).attr("data-id");
-               console.log(getImgId);
+               //console.log(getImgId);
             $.ajax({
                 type:"post",
                 url:"/dexiansheng/dellSirQrcodeList",

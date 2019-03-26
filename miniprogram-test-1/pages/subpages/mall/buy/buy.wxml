@@ -3,7 +3,7 @@
 <view class='green'></view>
   求知书店商城
 </view>
-<view class="addBox">
+<view class="addBox"  bindtap='address'>
   <view class="addBoxSu1">
     <image src='../../../../images/address.png'></image>
   </view>
@@ -15,7 +15,7 @@
       <text class="detail">{{address.user_address}}</text>
     </view> 
   </view>
-  <view class="addBoxSu3" bindtap='address'>
+  <view class="addBoxSu3">
     <image src='../../../../images/nav.png'></image>
   </view>
 </view>
