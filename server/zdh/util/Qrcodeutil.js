@@ -18,7 +18,7 @@ var createQrcode = {
  create: function(obj,callback) {
      var scene=obj.sign;
     filename=obj.sign;
-    postData.path= "pages/login/login",
+    postData.path= "/pages/subpages/News/News",
     postData.scene=scene;
   this.getToken(callback);
  }, 
