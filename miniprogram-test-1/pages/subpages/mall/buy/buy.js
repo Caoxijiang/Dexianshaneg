@@ -78,8 +78,8 @@ Page({
             title: '提示',
             content: '登陆过期',
             complete: function () {
-              wx.redirectTo({
-                url: '/pages/login/login',
+              wx.switchTab({
+               url: '/pages/subpages/News/News',
                 success: function () {
                   app.login();
                 }
@@ -107,7 +107,7 @@ Page({
                 icon: 'success',
                 duration: 2000,
                 complete:function(){
-                  wx.redirectTo({
+                  wx.switchTab({
                     url: '../../News/News'
                   })
                 }

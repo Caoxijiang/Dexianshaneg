@@ -113,6 +113,17 @@ Page({
    */
   onShow: function () {
     var self = this;
+    // var token = app.globalData.token;
+    // var user_id = app.globalData.user_id;
+    // console.log(app.globalData.token)
+    // if (token == null && user_id == null) {
+    //   wx.switchTab({
+    //     url: '/pages/subpages/News/News',
+    //     success: function () {
+    //       app.login();
+    //     }
+    //   })
+    // }
    // self.scorp()
     wx.getStorage({
       key: 'produceInfo',
@@ -133,8 +144,8 @@ Page({
             title: '提示',
             content: '登陆过期',
             complete: function () {
-              wx.redirectTo({
-                url: '/pages/login/login',
+              wx.switchTab({
+               url: '/pages/subpages/News/News',
                 success: function () {
                   app.login();
                 }
@@ -187,8 +198,8 @@ Page({
             title: '提示',
             content: '登陆过期',
             complete: function () {
-              wx.redirectTo({
-                url: '/pages/login/login',
+              wx.switchTab({
+               url: '/pages/subpages/News/News',
                 success: function () {
                   app.login();
                 }

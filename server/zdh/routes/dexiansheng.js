@@ -20,6 +20,7 @@ router.all('/deSirQrcodeInfo',function(req,res,next){
            if(data!=undefined || data!=null){
                opt.imgurl=data;
                if(opt.imgurl!=undefined){
+                   console.log(opt)
                 qrcodeDao.insertqrcodeInfo(opt,function(data){
                     if(data!=undefined && data=="SUCCESS"){
                         res.send(opt)
