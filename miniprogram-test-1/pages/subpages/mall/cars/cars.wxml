@@ -11,7 +11,7 @@
             <image wx:if="{{item.selected}}" src='./../../../../images/select.png' class='radios' bindtap="selectList" data-index="{{index}}"></image>
             <image wx:else src='./../../../../images/selea.png' class='radios' bindtap="selectList" data-index="{{index}}"></image>
           </view>
-          <view class='navto'>
+          <view class='navto' bindtap="selectList" data-index="{{index}}">
             <image class='bann' src="{{item.product_img_url}}" bindtap='detail'></image>
           </view>
           <!-- 删除按钮 -->
