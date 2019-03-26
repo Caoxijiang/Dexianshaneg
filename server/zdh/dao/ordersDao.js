@@ -13,7 +13,7 @@ var pool  = mysql.createPool($util.extend({},$conf.mysql));
         pool.getConnection(function(err,connection){
             async.waterfall([
                 function(callback){
-                    connection.query($sql.insertorderInfo,[req.uid,req.Num,req.total,req.tname,req.phoneNum,time.formatTime(req.startTime,"Y-M-D h:m:s"),req.mark],function(err,results,fields){
+                    connection.query($sql.insertorderInfo,[req.uid,req.Num,req.total,req.tname,req.phoneNum,time.formatTime(req.startTime,"Y-M-D h:m:s"),req.mark,req.remarks],function(err,results,fields){
                         if(err) throw err;
                         req.oid=results.insertId;
                       //  connection.release();
