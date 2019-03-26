@@ -25,4 +25,7 @@
 <view class='buybtn' bindtap='buybutton'>
   加入购物车
 </view>
+<view class='buybtn2' bindtap='pay'>
+  立即支付
+</view>
 

@@ -53,84 +53,96 @@ Page({
     var openid = app.globalData.token;
     var total = self.data.totalMoney;
     var sence = self.data.sence;
-    var uid = app.globalData.user_id;  
-    var pidinfo = new Array(); 
-    for (let i = 0; i < this.data.selecarts.length;i++){
-      pidinfo.push({ pid: this.data.selecarts[i].prod_id, num: this.data.selecarts[i].num});
-    }
-   
-    wx.request({
-      url: serverURL + '/wxPay/wx_pay',
-      data: {
-        openid: openid,
-        title: self.data.proName,
-        price: total,
-        phoneNum:phone,
-        sence: sence,
-        uid: uid,
-        remarks: remark,
-        pidinfo: JSON.stringify(pidinfo)
-      },
-      header: { 'content-type': 'application/json' },
-      success: function (res) {
-        if (res.data == "err") {
-          wx.showModal({
-            title: '提示',
-            content: '登陆过期',
-            complete: function () {
-              wx.switchTab({
-               url: '/pages/subpages/News/News',
-                success: function () {
-                  app.login();
-                }
-              })
-            }
-          })
-        } else if (res.data.status == "102") {
-          //console.log(res);
+    var uid = app.globalData.user_id; 
+    if (this.data.address.length==0){
+      wx.showToast({
+        title: '请设置收货地址',
+        icon: 'succes',
+        duration: 10000
+      })
 
-          wx.showModal({
-            title: '提示',
-            content: "服务器错误",
-          })
-        } else if (res.data.status == 100) {
-          var payModel = res.data;
-          wx.requestPayment({
-            'timeStamp': payModel.timestamp,
-            'nonceStr': payModel.nonceStr,
-            'package': payModel.package,
-            'signType': 'MD5',
-            'paySign': payModel.paySign,
-            'success': function (res) {
-              wx.showToast({
-                title: '支付成功',
-                icon: 'success',
-                duration: 2000,
-                complete:function(){
-                  wx.switchTab({
-                    url: '../../News/News'
-                  })
-                }
-              })
-            },
-            'fail': function (res) {
-              if (res.errMsg == "requestPayment:fail cancel") {
-                wx.showToast({
-                  title: '取消支付',
-                  icon: 'fail',
-                  duration: 2000,
-                })
-              } else {
-                wx.showModal({
-                  title: '提示',
-                  content: "支付发起失败",
+      setTimeout(function () {
+        wx.hideToast()
+      }, 1000)
+
+    }else{
+      var pidinfo = new Array();
+      for (let i = 0; i < this.data.selecarts.length; i++) {
+        pidinfo.push({ pid: this.data.selecarts[i].prod_id, num: this.data.selecarts[i].num });
+      }
+      wx.request({
+        url: serverURL + '/wxPay/wx_pay',
+        data: {
+          openid: openid,
+          title: self.data.proName,
+          price: total,
+          phoneNum: phone,
+          sence: sence,
+          uid: uid,
+          remarks: remark,
+          pidinfo: JSON.stringify(pidinfo)
+        },
+        header: { 'content-type': 'application/json' },
+        success: function (res) {
+          if (res.data == "err") {
+            wx.showModal({
+              title: '提示',
+              content: '登陆过期',
+              complete: function () {
+                wx.switchTab({
+                  url: '/pages/subpages/News/News',
+                  success: function () {
+                    app.login();
+                  }
                 })
               }
-            }
-          })
+            })
+          } else if (res.data.status == "102") {
+            //console.log(res);
+
+            wx.showModal({
+              title: '提示',
+              content: "服务器错误",
+            })
+          } else if (res.data.status == 100) {
+            var payModel = res.data;
+            wx.requestPayment({
+              'timeStamp': payModel.timestamp,
+              'nonceStr': payModel.nonceStr,
+              'package': payModel.package,
+              'signType': 'MD5',
+              'paySign': payModel.paySign,
+              'success': function (res) {
+                wx.showToast({
+                  title: '支付成功',
+                  icon: 'success',
+                  duration: 2000,
+                  complete: function () {
+                    wx.switchTab({
+                      url: '../../News/News'
+                    })
+                  }
+                })
+              },
+              'fail': function (res) {
+                if (res.errMsg == "requestPayment:fail cancel") {
+                  wx.showToast({
+                    title: '取消支付',
+                    icon: 'fail',
+                    duration: 2000,
+                  })
+                } else {
+                  wx.showModal({
+                    title: '提示',
+                    content: "支付发起失败",
+                  })
+                }
+              }
+            })
+          }
         }
-      }
-    })
+      })
+    } 
 
   },
   onLoad: function (options) {
