@@ -506,3 +506,7 @@ border-radius:4px;
   width: 90%;
   margin: 0px auto;
 } 
+.concent{
+  width:60rpx;
+  height:60rpx;
+}

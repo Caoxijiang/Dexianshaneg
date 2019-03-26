@@ -137,10 +137,24 @@ Page({
         j++;
       }
     }
-    //console.log(selecars);
-    var data = JSON.stringify(selecars);
-    wx.navigateTo({
-      url: '../buy/buy?data=' + data,
-    })
+    console.log(selecars);
+    if (selecars.length==0){
+      wx.showToast({
+        title: '请选择商品',
+        icon: 'succes',
+        duration: 10000
+      })
+
+      setTimeout(function () {
+        wx.hideToast()
+      }, 1000)
+
+    }else{
+      var data = JSON.stringify(selecars);
+      wx.navigateTo({
+        url: '../buy/buy?data=' + data,
+      })
+    }
+    
   },
 })

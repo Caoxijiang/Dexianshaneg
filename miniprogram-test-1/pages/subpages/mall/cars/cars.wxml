@@ -41,9 +41,9 @@
 
 <!-- 底部操作栏 -->
 <view class='bottom'>
-  <view class='radioboxtotal'>
-    <image wx:if="{{selectAllStatus}}" src='./../../../../images/select.png' class='radios' bindtap="selectAll"></image>
-    <image wx:else src='./../../../../images/selea.png' class='radios' bindtap="selectAll"></image>
+  <view class='radioboxtotal' bindtap="selectAll">
+    <image wx:if="{{selectAllStatus}}" src='./../../../../images/select.png' class='radios'></image>
+    <image wx:else src='./../../../../images/selea.png' class='radios'></image>
     全选
   </view>
   <view class='total yellow'>合计：￥{{totalPrice}}</view>
