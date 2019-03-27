@@ -22,6 +22,7 @@ Page({
         if (res.data[0].product_id == null){
             //console.log("kong");
         }else{
+          console.log(res.data);
           self.setData({
             hasList: true,
             carts: res.data
@@ -57,13 +58,7 @@ Page({
         self.setData({
           carts: carts
         });
-        if (!carts.length) {                  // 如果购物车为空
-          self.setData({
-            hasList: false              // 修改标识为false，显示购物车为空页面
-          });
-        } else {                              // 如果不为空
-          self.getTotalPrice();           // 重新计算总价格
-        }
+        
       }, fail: function (res) {
       }
     })
