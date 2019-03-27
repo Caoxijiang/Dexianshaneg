@@ -39,12 +39,13 @@ Page({
   /*备注信息获取*/
   bindTextAreaBlur(e) {
     let remark=e.detail.value;
-    //console.log(meno);
+    console.log(remark);
     this.setData({
       remark: remark
     });
     console.log();
   },
+  
   // 支付方法
   pay: function () {
     var self=this;

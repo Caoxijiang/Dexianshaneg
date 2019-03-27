@@ -39,7 +39,9 @@
 </view>
 <view class="delbox hei">
   <text style="vertical-align:top;">备注:</text>
-  <textarea bindblur="bindTextAreaBlur" auto-height placeholder="给卖家留言" />
+
+  <textarea bindinput="bindTextAreaBlur"  placeholder="给卖家留言"  style="height:300rpx"/>
+
 </view>
 <view class='bottom'>
   <view class='total yellow'>合计：￥{{totalMoney}}</view>
